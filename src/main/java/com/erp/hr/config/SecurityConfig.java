@@ -11,7 +11,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(config -> config.disable())
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(req -> req.requestMatchers("/api/**").permitAll())
                 .httpBasic(Customizer.withDefaults());
 
