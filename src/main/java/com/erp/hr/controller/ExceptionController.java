@@ -1,6 +1,7 @@
 package com.erp.hr.controller;
 
 import com.erp.hr.model.Response;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
+                                                                  @NonNull HttpHeaders headers, HttpStatusCode statusCode, @NonNull WebRequest request) {
         Response response = new Response(statusCode.toString(),
                 ex.getBindingResult().toString());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
