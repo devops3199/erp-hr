@@ -1,20 +1,17 @@
 package com.erp.hr.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/employee")
+@RequestMapping(path = "/api/employees")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<String> getEmployees() {
         List<String> employees = new ArrayList<>();
         employees.add("Ray");
@@ -24,5 +21,10 @@ public class EmployeeController {
         employees.add("Charlie");
         employees.add("Jack");
         return employees;
+    }
+
+    @GetMapping("/{id}")
+    public String getEmployee(@PathVariable int id) {
+        return "ID = " + id;
     }
 }
