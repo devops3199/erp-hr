@@ -1,23 +1,51 @@
 package com.erp.hr.service;
 
+import com.erp.hr.dto.employee.EmployeeRequestDto;
 import com.erp.hr.model.Employee;
+import com.erp.hr.repository.DivisionRepository;
+import com.erp.hr.repository.EmployeeRepository;
+import com.erp.hr.repository.RoleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 public class EmployeeService {
     private final PasswordEncoder passwordEncoder;
+    private final EmployeeRepository employeeRepository;
+    private final RoleRepository roleRepository;
+    private final DivisionRepository divisionRepository;
 
     @Autowired
-    public EmployeeService(PasswordEncoder passwordEncoder) {
+    public EmployeeService(PasswordEncoder passwordEncoder, EmployeeRepository employeeRepository, RoleRepository roleRepository, DivisionRepository divisionRepository) {
         this.passwordEncoder = passwordEncoder;
+        this.employeeRepository = employeeRepository;
+        this.roleRepository = roleRepository;
+        this.divisionRepository = divisionRepository;
     }
 
-    public void registerEmployee(Employee employee) {
-        String encodedPassword = this.passwordEncoder.encode(employee.getPassword());
-        employee.setPassword(encodedPassword);
+    @Transactional
+    public void registerEmployee(EmployeeRequestDto employeeRequestDto) {
+        String encodedPassword = this.passwordEncoder.encode(employeeRequestDto.getPassword());
+        var division = this.divisionRepository.findById(employeeRequestDto.getDivisionId());
+        var role = this.roleRepository.findById(employeeRequestDto.getRoleId());
+
+        if (division.isPresent() && role.isPresent()) {
+            var employee = Employee.builder()
+                    .email(employeeRequestDto.getEmail())
+                    .password(encodedPassword)
+                    .firstName(employeeRequestDto.getFirstName())
+                    .lastName(employeeRequestDto.getLastName())
+                    .phoneNumber(employeeRequestDto.getPhoneNumber())
+                    .division(division.get())
+                    .role(role.get())
+                    .joinDate(employeeRequestDto.getJoinDate())
+                    .build();
+
+            this.employeeRepository.save(employee);
+        }
     }
 }

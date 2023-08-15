@@ -1,5 +1,6 @@
 package com.erp.hr.controller;
 
+import com.erp.hr.dto.employee.EmployeeRequestDto;
 import com.erp.hr.model.Employee;
 import com.erp.hr.model.Response;
 import com.erp.hr.repository.EmployeeRepository;
@@ -20,12 +21,10 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
-    private final EmployeeRepository employeeRepository;
     private final EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeRepository employeeRepository, EmployeeService employeeService) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -47,9 +46,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Response> addEmployee(@Valid @RequestBody Employee employee) {
-        this.employeeService.registerEmployee(employee);
-        log.info("employee = " + employee.toString());
+    public ResponseEntity<Response> registerEmployee(@Valid @RequestBody EmployeeRequestDto employeeRequestDto) {
+        this.employeeService.registerEmployee(employeeRequestDto);
         Response response = new Response();
         response.setStatusCode("201");
         response.setStatusMsg("Employee registered successfully");
