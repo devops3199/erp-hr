@@ -1,25 +1,22 @@
 package com.erp.hr.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Employee extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int employeeId;
 
+    @Email
     @NotBlank(message="email is required")
     private String email;
 
@@ -37,7 +34,6 @@ public class Employee extends BaseEntity {
 
     private LocalDateTime lastLogin;
 
-    @NotBlank(message="joinDate is required")
     private Date joinDate;
 
     private LocalDateTime deletedAt;
