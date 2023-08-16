@@ -1,6 +1,7 @@
 package com.erp.hr.service;
 
 import com.erp.hr.dto.employee.EmployeeRequestDto;
+import com.erp.hr.dto.employee.EmployeeResponseDto;
 import com.erp.hr.model.Employee;
 import com.erp.hr.repository.DivisionRepository;
 import com.erp.hr.repository.EmployeeRepository;
@@ -10,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,6 +30,37 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
         this.roleRepository = roleRepository;
         this.divisionRepository = divisionRepository;
+    }
+
+    public List<EmployeeResponseDto> getEmployees() {
+        var employees = this.employeeRepository.findAll();
+        return employees.stream().map(employee -> EmployeeResponseDto.builder()
+                    .employeeId(employee.getEmployeeId())
+                    .email(employee.getEmail())
+                    .firstName(employee.getFirstName())
+                    .lastName(employee.getLastName())
+                    .phoneNumber(employee.getPhoneNumber())
+                    .lastLogin(employee.getLastLogin())
+                    .joinDate(employee.getJoinDate())
+                    .roleName(employee.getRole().getName())
+                    .divisionName(employee.getDivision().getName())
+                    .build()).collect(Collectors.toList());
+    }
+
+    public EmployeeResponseDto getEmployee(int id) {
+        var employee = this.employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("No such employee found"));
+
+        return EmployeeResponseDto.builder()
+                .employeeId(employee.getEmployeeId())
+                .email(employee.getEmail())
+                .firstName(employee.getFirstName())
+                .lastName(employee.getLastName())
+                .phoneNumber(employee.getPhoneNumber())
+                .lastLogin(employee.getLastLogin())
+                .joinDate(employee.getJoinDate())
+                .roleName(employee.getRole().getName())
+                .divisionName(employee.getDivision().getName())
+                .build();
     }
 
     @Transactional

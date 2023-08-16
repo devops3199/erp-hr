@@ -1,6 +1,7 @@
 package com.erp.hr.controller;
 
 import com.erp.hr.dto.employee.EmployeeRequestDto;
+import com.erp.hr.dto.employee.EmployeeResponseDto;
 import com.erp.hr.model.Employee;
 import com.erp.hr.model.Response;
 import com.erp.hr.repository.EmployeeRepository;
@@ -29,20 +30,13 @@ public class EmployeeController {
     }
 
     @GetMapping("")
-    public List<String> getEmployees() {
-        List<String> employees = new ArrayList<>();
-        employees.add("Ray");
-        employees.add("John");
-        employees.add("Sam");
-        employees.add("Alex");
-        employees.add("Charlie");
-        employees.add("Jack");
-        return employees;
+    public List<EmployeeResponseDto> getEmployees() {
+        return this.employeeService.getEmployees();
     }
 
     @GetMapping("/{id}")
-    public String getEmployee(@PathVariable int id) {
-        return "ID = " + id;
+    public EmployeeResponseDto getEmployee(@PathVariable int id) {
+        return this.employeeService.getEmployee(id);
     }
 
     @PostMapping("/register")
