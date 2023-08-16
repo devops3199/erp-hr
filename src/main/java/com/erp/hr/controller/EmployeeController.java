@@ -2,9 +2,7 @@ package com.erp.hr.controller;
 
 import com.erp.hr.dto.employee.EmployeeRequestDto;
 import com.erp.hr.dto.employee.EmployeeResponseDto;
-import com.erp.hr.model.Employee;
 import com.erp.hr.model.Response;
-import com.erp.hr.repository.EmployeeRepository;
 import com.erp.hr.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
