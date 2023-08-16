@@ -1,5 +1,6 @@
 package com.erp.hr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -32,6 +33,7 @@ public class Employee extends BaseEntity {
 
     private LocalDateTime lastLogin;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private Date joinDate;
 
     private LocalDateTime deletedAt;
