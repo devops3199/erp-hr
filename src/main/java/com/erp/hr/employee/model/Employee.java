@@ -1,5 +1,6 @@
-package com.erp.hr.model;
+package com.erp.hr.employee.model;
 
+import com.erp.hr.common.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.erp.hr.dto.employee;
+package com.erp.hr.employee.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

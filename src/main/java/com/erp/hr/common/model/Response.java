@@ -1,4 +1,4 @@
-package com.erp.hr.model;
+package com.erp.hr.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

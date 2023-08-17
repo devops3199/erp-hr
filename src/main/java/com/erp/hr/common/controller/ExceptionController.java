@@ -1,6 +1,6 @@
-package com.erp.hr.controller;
+package com.erp.hr.common.controller;
 
-import com.erp.hr.model.Response;
+import com.erp.hr.common.model.Response;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;

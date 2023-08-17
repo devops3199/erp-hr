@@ -1,6 +1,6 @@
-package com.erp.hr.repository;
+package com.erp.hr.employee.repository;
 
-import com.erp.hr.model.Division;
+import com.erp.hr.employee.model.Division;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.erp.hr.model;
+package com.erp.hr.common.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;

@@ -1,4 +1,4 @@
-package com.erp.hr.dto.employee;
+package com.erp.hr.employee.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;

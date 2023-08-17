@@ -1,9 +1,9 @@
-package com.erp.hr.controller;
+package com.erp.hr.employee.controller;
 
-import com.erp.hr.dto.employee.EmployeeRequestDto;
-import com.erp.hr.dto.employee.EmployeeResponseDto;
-import com.erp.hr.model.Response;
-import com.erp.hr.service.EmployeeService;
+import com.erp.hr.employee.dto.EmployeeRequestDto;
+import com.erp.hr.employee.dto.EmployeeResponseDto;
+import com.erp.hr.common.model.Response;
+import com.erp.hr.employee.service.EmployeeService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
