@@ -24,7 +24,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequestDto authRequestDto) {
-        var token = this.authService.generateToken(authRequestDto.getEmail(), authRequestDto.getPassword());
+        var token = this.authService.getToken(authRequestDto.getEmail(), authRequestDto.getPassword());
         return ResponseEntity.status(HttpStatus.CREATED).body(token);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        return ResponseEntity.status(HttpStatus.CREATED).body("");
     }
 }

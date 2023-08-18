@@ -25,16 +25,19 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
-    public Map<String, String> generateToken(String email, String password) {
+    public Map<String, String> getToken(String email, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
         var user = this.employeeRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
 
+        String token = this.jwtService.generateToken(user);
+        long expiredAt = this.jwtService.getExpirationInTimestamp(token);
+
         Map<String, String> result = new HashMap<>();
 
-        result.put("accessToken", this.jwtService.generateToken(user));
-        result.put("refreshToken", this.jwtService.generateRefreshToken(user));
+        result.put("token", token);
+        result.put("expiredAt", String.valueOf(expiredAt));
 
         return result;
     }
