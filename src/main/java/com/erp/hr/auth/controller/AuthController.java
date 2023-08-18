@@ -27,9 +27,4 @@ public class AuthController {
         var token = this.authService.getToken(authRequestDto.getEmail(), authRequestDto.getPassword());
         return ResponseEntity.status(HttpStatus.CREATED).body(token);
     }
-
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout() {
-        return ResponseEntity.status(HttpStatus.CREATED).body("");
-    }
 }
