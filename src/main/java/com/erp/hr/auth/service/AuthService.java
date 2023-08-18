@@ -7,6 +7,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @Service
 public class AuthService {
@@ -22,15 +25,17 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
-
-    public String generateToken(String email, String password) {
+    public Map<String, String> generateToken(String email, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
         var user = this.employeeRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
 
-        var accessToken = this.jwtService.generateToken(user);
+        Map<String, String> result = new HashMap<>();
 
-        return accessToken;
+        result.put("accessToken", this.jwtService.generateToken(user));
+        result.put("refreshToken", this.jwtService.generateRefreshToken(user));
+
+        return result;
     }
 }
