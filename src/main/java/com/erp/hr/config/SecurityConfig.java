@@ -2,7 +2,7 @@ package com.erp.hr.config;
 
 import com.erp.hr.auth.filter.AuthFilter;
 import com.erp.hr.employee.repository.EmployeeRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final EmployeeRepository employeeRepository;

@@ -13,19 +13,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class AuthService {
 
     private final EmployeeRepository employeeRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-
-    @Autowired
-    public AuthService(EmployeeRepository employeeRepository, AuthenticationManager authenticationManager, JwtService jwtService) {
-        this.employeeRepository = employeeRepository;
-        this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
-    }
 
     public Map<String, String> getToken(String email, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));

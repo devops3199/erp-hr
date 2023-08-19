@@ -5,7 +5,7 @@ import com.erp.hr.holiday.dto.HolidayRequestDto;
 import com.erp.hr.holiday.model.Holiday;
 import com.erp.hr.holiday.model.HolidayStatus;
 import com.erp.hr.holiday.repository.HolidayRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.temporal.ChronoUnit;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
-@AllArgsConstructor
 public class HolidayService {
 
     private final int TODAY = 1;

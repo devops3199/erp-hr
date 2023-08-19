@@ -5,7 +5,7 @@ import com.erp.hr.employee.dto.EmployeeResponseDto;
 import com.erp.hr.common.model.Response;
 import com.erp.hr.employee.service.EmployeeService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping(path = "/api/employees")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
