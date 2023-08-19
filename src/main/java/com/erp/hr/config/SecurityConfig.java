@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers("/api/auth/login").permitAll()
-                        .requestMatchers("/api/employee/**").hasAnyAuthority("Admin", "Leader", "Staff")
+                        .requestMatchers("/api/employees/**", "/api/holidays/**").hasAnyAuthority("admin", "leader", "staff")
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(this.authenticationProvider())
