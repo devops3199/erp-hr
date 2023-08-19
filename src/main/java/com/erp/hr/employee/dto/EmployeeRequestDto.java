@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class EmployeeRequestDto {
@@ -32,5 +32,5 @@ public class EmployeeRequestDto {
     private int roleId;
 
     @NotNull
-    private Date joinDate;
+    private LocalDate joinDate;
 }

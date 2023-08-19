@@ -9,9 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Builder
@@ -40,7 +40,7 @@ public class Employee extends BaseEntity implements UserDetails {
     private LocalDateTime lastLogin;
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private Date joinDate;
+    private LocalDate joinDate;
 
     private LocalDateTime deletedAt;
 

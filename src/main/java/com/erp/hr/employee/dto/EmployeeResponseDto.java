@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Builder
 @Data
@@ -24,7 +24,7 @@ public class EmployeeResponseDto {
     private LocalDateTime lastLogin;
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private Date joinDate;
+    private LocalDate joinDate;
 
     private String roleName;
 

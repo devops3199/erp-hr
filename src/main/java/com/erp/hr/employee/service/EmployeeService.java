@@ -6,6 +6,7 @@ import com.erp.hr.employee.model.Employee;
 import com.erp.hr.employee.repository.DivisionRepository;
 import com.erp.hr.employee.repository.EmployeeRepository;
 import com.erp.hr.employee.repository.RoleRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+@AllArgsConstructor
 @Service
 public class EmployeeService {
 
@@ -23,14 +25,6 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final RoleRepository roleRepository;
     private final DivisionRepository divisionRepository;
-
-    @Autowired
-    public EmployeeService(PasswordEncoder passwordEncoder, EmployeeRepository employeeRepository, RoleRepository roleRepository, DivisionRepository divisionRepository) {
-        this.passwordEncoder = passwordEncoder;
-        this.employeeRepository = employeeRepository;
-        this.roleRepository = roleRepository;
-        this.divisionRepository = divisionRepository;
-    }
 
     public List<EmployeeResponseDto> getEmployees() {
         var employees = this.employeeRepository.findAll();

@@ -5,6 +5,7 @@ import com.erp.hr.employee.dto.EmployeeResponseDto;
 import com.erp.hr.common.model.Response;
 import com.erp.hr.employee.service.EmployeeService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,16 +16,12 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@AllArgsConstructor
 @RequestMapping(path = "/api/employees")
 @CrossOrigin(origins = "*")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-
-    @Autowired
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @GetMapping("")
     public List<EmployeeResponseDto> getEmployees() {
