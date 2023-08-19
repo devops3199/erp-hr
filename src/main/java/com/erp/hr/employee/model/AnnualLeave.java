@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@IdClass(AnnualLeaveId.class)
 @Getter
 @Setter
 @NoArgsConstructor
