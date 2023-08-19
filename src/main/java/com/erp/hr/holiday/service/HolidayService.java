@@ -4,7 +4,6 @@ import com.erp.hr.employee.repository.EmployeeRepository;
 import com.erp.hr.holiday.dto.HolidayRequestDto;
 import com.erp.hr.holiday.model.Holiday;
 import com.erp.hr.holiday.model.HolidayStatus;
-import com.erp.hr.holiday.model.HolidayType;
 import com.erp.hr.holiday.repository.HolidayRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

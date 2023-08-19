@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,5 +42,9 @@ public class AuthService {
         result.put("expiredAt", String.valueOf(expiredAt));
 
         return result;
+    }
+
+    public void setLastLogin(String email) {
+        this.employeeRepository.updateLastLoginByEmail(LocalDateTime.now(), email);
     }
 }

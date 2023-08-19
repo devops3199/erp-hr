@@ -2,7 +2,7 @@ package com.erp.hr.config;
 
 import com.erp.hr.auth.filter.AuthFilter;
 import com.erp.hr.employee.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,16 +22,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
+@AllArgsConstructor
 public class SecurityConfig {
 
     private final EmployeeRepository employeeRepository;
     private final AuthFilter authFilter;
-
-    @Autowired
-    public SecurityConfig(EmployeeRepository employeeRepository, AuthFilter authFilter) {
-        this.employeeRepository = employeeRepository;
-        this.authFilter = authFilter;
-    }
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {

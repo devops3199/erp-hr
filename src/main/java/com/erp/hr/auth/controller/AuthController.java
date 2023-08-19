@@ -25,6 +25,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody AuthRequestDto authRequestDto) {
         var token = this.authService.getToken(authRequestDto.getEmail(), authRequestDto.getPassword());
+        this.authService.setLastLogin(authRequestDto.getEmail());
         return ResponseEntity.status(HttpStatus.CREATED).body(token);
     }
 }
