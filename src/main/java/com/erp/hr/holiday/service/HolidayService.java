@@ -7,9 +7,11 @@ import com.erp.hr.holiday.model.HolidayStatus;
 import com.erp.hr.holiday.repository.HolidayRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -23,7 +25,6 @@ public class HolidayService {
     private final EmployeeRepository employeeRepository;
     private final HolidayRepository holidayRepository;
 
-    @Transactional
     public List<Holiday> getHolidaysByEmployee() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         var employee = this.employeeRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("No such employee found"));
@@ -52,5 +53,25 @@ public class HolidayService {
                 .build();
 
         this.holidayRepository.save(holiday);
+    }
+
+    @Transactional
+    public void modifyStatus(int holidayId, HolidayStatus status) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        var employee = this.employeeRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("No such employee found"));
+
+        // FIXME: 1,2가 뭐임?
+        boolean hasPermission = employee.getRole().getRoleId() == 1 || employee.getRole().getRoleId() == 2;
+
+        if (hasPermission) {
+            // FIXME: 하나의 레파지토리로 처리. PUT으로 save? 그리고 Audit이 동작하지 않는다
+            if (status == HolidayStatus.APPROVED) {
+                this.holidayRepository.updateApprovedByAndStatusByHolidayId(holidayId, status, employee.getEmployeeId());
+            } else if (status == HolidayStatus.REJECTED) {
+                this.holidayRepository.updateRejectedByAndStatusByHolidayId(holidayId, status, employee.getEmployeeId());
+            }
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
     }
 }
