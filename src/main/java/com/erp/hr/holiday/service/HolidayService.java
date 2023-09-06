@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,6 +22,18 @@ public class HolidayService {
     private final int TODAY = 1;
     private final EmployeeRepository employeeRepository;
     private final HolidayRepository holidayRepository;
+
+    @Transactional
+    public List<Holiday> getHolidaysByEmployee() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        var employee = this.employeeRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("No such employee found"));
+
+        return this.holidayRepository.findByEmployeeId(employee.getEmployeeId());
+    }
+
+    public List<Holiday> getHolidaysAll() {
+        return this.holidayRepository.findAll();
+    }
 
     @Transactional
     public void addHoliday(HolidayRequestDto holidayRequestDto) {
