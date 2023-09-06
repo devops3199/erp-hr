@@ -29,7 +29,7 @@ public class EmployeeServiceTests {
 
     @DisplayName("직원 리스트 조회")
     @Test
-    public void EmployeeService_getEmployees_ReturnsEmployeeDtoList() throws Exception {
+    public void EmployeeService_getEmployees_ReturnsEmployeeDtoList() {
 
         // Arrange
         Employee ray = Employee.builder()

@@ -4,7 +4,6 @@ import com.erp.hr.common.model.Response;
 import com.erp.hr.holiday.dto.HolidayRequestDto;
 import com.erp.hr.holiday.dto.HolidayStatusPatchDto;
 import com.erp.hr.holiday.model.Holiday;
-import com.erp.hr.holiday.model.HolidayStatus;
 import com.erp.hr.holiday.service.HolidayService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
