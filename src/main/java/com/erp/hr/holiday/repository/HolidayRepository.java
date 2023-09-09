@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -16,11 +17,6 @@ public interface HolidayRepository extends JpaRepository<Holiday, Integer> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Holiday h SET h.status = ?2, h.approvedBy = ?3 WHERE h.holidayId = ?1")
-    int updateApprovedByAndStatusByHolidayId(int holidayId, HolidayStatus status, int approvedBy);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Holiday h SET h.status = ?2, h.rejectedBy = ?3 WHERE h.holidayId = ?1")
-    int updateRejectedByAndStatusByHolidayId(int holidayId, HolidayStatus status, int rejectedBy);
+    @Query("UPDATE Holiday h SET h.status = ?2, h.updatedBy = ?3, h.updatedAt = ?4 WHERE h.holidayId = ?1")
+    int updateStatusByHolidayId(int holidayId, HolidayStatus status, int updatedBy, LocalDateTime dateTime);
 }

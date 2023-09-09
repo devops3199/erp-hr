@@ -39,7 +39,5 @@ public class Holiday extends BaseEntity {
 
     private String note;
 
-    private Integer approvedBy;
-
-    private Integer rejectedBy;
+    private Integer updatedBy;
 }
