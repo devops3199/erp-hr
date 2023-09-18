@@ -1,7 +1,6 @@
 package com.erp.hr.holiday.service;
 
 import com.erp.hr.employee.model.Employee;
-import com.erp.hr.employee.repository.EmployeeRepository;
 import com.erp.hr.holiday.dto.HolidayRequestDto;
 import com.erp.hr.holiday.model.Holiday;
 import com.erp.hr.holiday.model.HolidayStatus;
