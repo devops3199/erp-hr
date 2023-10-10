@@ -143,6 +143,24 @@
         }
       ]
       ```
+- `POST /api/holidays/add`
+    - 설명: 본인 연차 등록. JWT에서 본인 조회.
+    - 요청:
+      ```
+      BODY (JSON)
+      {
+        "type" : "NORMAL",
+        "start" : "2023-10-11",
+        "end" : "2023-10-13"
+      }
+      ```
+    - 응답:
+      ```
+      {
+        "statusCode": "201",
+        "statusMsg": "Holiday added successfully"
+      }
+      ```
 - `PATCH /api/holidays/status`
     - 설명: 연차 승인 혹은 거절. Role Admin, Leader만 수정 가능
     - 요청:
