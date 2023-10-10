@@ -7,12 +7,14 @@
 - MySQL Community 8.0
 
 ## 테이블 설계
-- 외래키 존재 여부는 CASCADE 사용 여부에 따라 설정
+- 외래키 존재 여부는 CASCADE 사용 여부에 따라 설정했습니다.
 <img width="600" alt="tables" src="https://github.com/devops3199/erp-hr/assets/8262598/3818933d-13ee-441f-a6da-36a9a68bf3d1">
 
 ## 서비스 설계
-- JWT 기반 응답 서비스
-- 각 도메인 Service 경우 Mocking 기반 테스트 코드 작성 (비즈니스 로직 테스트 목적)
+- JWT 기반 응답 서비스입니다.
+  - HTTP HEADER에 `Authorization: Bearer eyabc12345`가 필요합니다.
+  - `GET /api/ping`, `POST /api/login` 경우 토큰이 필요 없습니다.
+- 각 도메인 Service 경우 비즈니스 로직 체크 목적으로 테스트 코드(Mocking 기반) 작성했습니다.
   - `HolidayServiceTests`
   - `EmployeeServiceTests`
 
@@ -21,7 +23,7 @@
   - 설명: Health Check 용도
   - 응답: `pong`
 - `POST /api/login`
-  - 설명: 로그인
+  - 설명: 사용자 로그인
   - 요청: 
     ```
     BODY (JSON)
@@ -126,7 +128,7 @@
       ]
       ```
 - `GET /api/holidays`
-    - 설명: 본인 연차 기록 목록 조회. JWT에서 본인 조회.
+    - 설명: 본인 연차 기록 목록 조회. (JWT에서 본인 조회)
     - 응답:
       ```
       [
@@ -144,7 +146,7 @@
       ]
       ```
 - `POST /api/holidays/add`
-    - 설명: 본인 연차 등록. JWT에서 본인 조회.
+    - 설명: 본인 연차 등록. (JWT에서 본인 조회)
     - 요청:
       ```
       BODY (JSON)
