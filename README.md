@@ -17,6 +17,7 @@
 - 각 도메인 Service 경우 비즈니스 로직 체크 목적으로 테스트 코드(Mocking 기반) 작성했습니다.
   - `HolidayServiceTests`
   - `EmployeeServiceTests`
+- Builder Pattern을 사용했습니다.
 
 ## 엔드포인트
 - `GET /api/ping`
